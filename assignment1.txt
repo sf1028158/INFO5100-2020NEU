@@ -1,0 +1,203 @@
+1.Design a course management system (Like Canvas)
+-Student
+  Data:name,address,phone,emailAddress,loginCredentials
+  Behaviors:login,searchCourse,signInAtendance,goToZoom,learn,askQuestions,reviewCourseMatetials,submitAssignments,checkgrades
+-Teacher
+  Data:name,address,phone,emailAddress,loginCredentials
+  Behaviors:login,searchCourse,goToZoom,teach,answerQuestions,uploadCourseMaterials,uploadAssignments(),giveGrades()
+-Course
+  Data:time,place,Teachers,crn
+  Behaviors:
+-CourseManagementSystem
+  Data:Courses
+  Behaviors:
+
+Sequence of invoking behaviors on objects
+
+Student alice;
+alice.login(loginCredentials);
+alice.searchCourse(course.crn);
+alice.signInAtendance();
+alice.goToZoom();
+alice.learn();
+alice.askQuestions();
+alice.reviewCourseMatetials();
+alice.submitAssignments();
+alice.checkgrades();
+
+Teacher john;
+john.login(loginCredentials);
+john.searchCourse;
+john.goToZoom();
+john.teach();
+john.answerQuestions();
+john.uploadCourseMaterials;
+john.uploadAssignments();
+john.giveGrades();
+
+
+2.Design a pet adoption platform
+-Adopter
+  Data:name,address,phone,emailAddress,loginCredentials
+  Behaviors:login,search,ApplyToAdopt,adopt,wait
+-Pet
+  Data:color,size,breed,gender,weight
+  Behaviors:
+-PersonPlaceOutPet
+  Data:name,address,phone,emailAddress,loginCredentials
+  Behaviors:login,placeOutPet,wait
+-PetAdoptPlatform
+  Data:Pets,capacity,
+  Behaviors:adpotPet,agreeApply
+
+Sequence of invoking behaviors on objects
+
+PersonPlaceOutPet john;
+PetAdoptPlatform   petAdoptCenter;
+john.login(loginCredentials);
+Pet johnPet;
+if there is empty place in petAdoptCenter
+    john.placeOutPet(johnPet);
+    petAdoptCenter.adoptPet(johnPet);
+    petAdoptCenter.capacity--;
+else john.wait;
+Adopter  alice;
+alice.login(loginCredentials);
+Pet petAlice=alice.search(color,size,breed,gender,weight);
+alice.ApplyToAdopt(petAlice);
+if the pet has not been adopted
+   petAdoptCenter.agreeApply(petAlice,alice);
+   alice.adopt(petAlice);
+   petAdoptCenter.capacity++;
+else alice.wait;
+
+3.Design an app to book airline ticket.
+-Customer
+   --Data:emailAddress, Name, loginCredentials, Address, Phone, credit card
+   --Behaviors:login,search,buy,requestCancelOrder
+-App
+   --Data:Tickets
+   --Behaviors:checkout,sendReceipt,refund
+-Ticket
+   --Data:
+   --Behaviors:price,time,destination,startaddress
+
+Sequence of invoking behaviors on objects:
+
+Customer alice;
+App  Ctrip;
+alice.login(loginCredentials);
+Ticket aliceticket=alice.search(price,time,destination,startaddress);
+if Ctrip isInStock
+   alice.buy(aliceticket);
+   Ctrip.checkout(alice.address, alice.phone, alice.creditCard);
+   Ctrip.sendReceipt(alice.emailAddress);
+  if alice change her mind
+     alice.requestCancelOrder(aliceticket);
+     Ctrip.refund(aliceticket, alice);         
+else ticket outOfStock
+
+
+4.Design a course registration platform.
+-Student
+   --Data:Name,emailAddress,loginCredentials,Address,Phone,
+   --Behaviors:login,seach,register,dropCourse,waitlist
+-Teacher
+  --Data:Name,emailAddress,loginCredentials,Address,Phone,
+  --Behaviors:login,search,checkStatusOfHisCourse
+-Administrator
+  --Data:Name,emailAddress,loginCredentials,Address,Phone,
+  --Behaviors:login,addcourse,updateCourse,deleteCourse,scheduleCourse,updateSchedule,deleteSchedule
+-Course
+  --Data:time,place,Teachers,crn,seats
+  --Behaviors:
+-CourseRegistrationPlatform
+  --Data:Courses
+  --Behaviors:
+Sequence of invoking behaviors on objects:
+
+CourseRegistrationPlatform  NUcourseRegistration;
+Student alice;
+alice.login(loginCredentials);
+Course info5100=alice.search(time,place,Teachers,crn);
+if there are seats in this course
+ alice.register(info5100);
+ info5200.seats--;
+  if alice change her mind
+    alice.dropCourse(info5100);
+    info5100.seats++;
+else alice.waitlist(info5100);
+ 
+Teacher john;  
+john.login(loginCredentials);
+john.search(course.time,course.place,course.Teachers,course.crn);
+john.checkStatusOfHisCourse(course.time,course.place);
+
+Administrator emma;
+emma.login(loginCredentials);
+emma.addcourse(time,place,Teachers,crn,seats);
+emma.updateCourse(time,place,Teachers,crn,seats);
+emma.deleteCourse(time,place,Teachers,crn,seats);
+emma.scheduleCourse(course.time,course.place,teacher.name);
+emma.updateSchedule(course.time,course.place,teacher.name);
+emma.deleteSchedule(course.time,course.place,teacher.name);
+
+
+
+5.Order food in a food delivery app.(Like Uber Eats)
+-Customer 
+    --Data:emailAddress, Name, loginCredentials, Address, Phone, credit card
+    --Behaviors: login, buy, writeReview, requestCancelOrder, requestRefund, Search, writeReview
+-FoodShop  
+    --Data:Name,Address,Phone
+    --Behaviors:acceptOrder,cook,package
+-FoodDelieveryApp 
+    --Data:Foods
+    --Behaviors:sendReceipt, checkOut, refund, sendtoFoodShop,sendToShipper
+-Food   
+    --Data:brand,name,size,price
+    --Behaviors:
+-Delivery Service Company  
+    --Data:Couriers
+    --Behaviors:allocateCourier, Ship
+-Courier  
+    --Data:Name
+    --Behaviors:fetchPackage,deliverPackage, contactCustomer
+
+Sequence of invoking behaviors on objects:
+
+Customer alice;
+FoodDelievertyApp UberEats;
+DeliveryServiceCompany ups;
+alice.login(loginCredentials);
+Food chickenwing=alice.search(brand,name,size,price);
+FoodShop Mcdonald=alice.search(name,address);
+if UberEats isInStock
+   alice.buy(chickenwing);
+   UberEats.checkout(alice.address, alice.phone, alice.creditCard);
+   UberEats.sendReceipt(alice.emailAddress);
+  if alice change her mind
+     alice.requestCancelOrder(chickenwing);
+     UberEats.refund(chickenwing, alice);
+  else
+     UberEats.sendtoFoodShop(Mcdonald);
+     McDonald.acceptOrder(chickenwing,alice);
+     McDonald.cook(chickenwing);
+     McDonald.pack(chickenwing,alice);
+     UberEats.sendToShipper(chickenwing, ups);
+     ups.ship(chickenwing);
+     Courier jamie = ups.allocateCourier;
+     jamie.fetchpackage(Mcdoanl.address,chickenwing,alice);
+     jamie.deliverPackage(chickenwing, alice.address);
+     jamie.contactCustomer(alice);
+
+   if alice check the package is right
+      alice.writeReview("*****");
+   else
+     alice.writeReview("ooooo");
+     alice.requestRefund(chickenwing, UberEats);
+     UberEats.refund(alice);
+else product outOfStock
+    
+
+
