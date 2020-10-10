@@ -1,0 +1,43 @@
+class Solution {
+    int capacity;
+    public int findKthLargest(int[] nums, int k) {
+        capacity = nums.length - 1;
+        delete(nums, k);
+        return nums[0];
+    }
+
+    public void buildHeap(int[] nums){
+        for(int i = nums.length / 2; i >= 0; i--){
+            heapify(nums, i);
+        }
+    }
+
+    public void delete(int[] nums, int k){
+        buildHeap(nums);
+        for(int i = 0; i < k - 1; i++){
+            nums[0] = nums[capacity--];
+            heapify(nums, 0);
+        }
+    }
+
+    public void heapify(int[] a, int index){
+        while(true){
+            int maxPos = index;
+            if(2 * index + 1 <= capacity && a[maxPos] < a[2 * index + 1]){
+                maxPos = 2 * index + 1;
+            }
+            if(2 * index + 2 <= capacity && a[maxPos] < a[2 * index + 2]){
+                maxPos = 2 * index + 2;
+            }
+            if(maxPos == index) return;
+            swap(a, index, maxPos);
+            index = maxPos;
+        }
+    }
+
+    public void swap(int[] nums, int k, int n){
+        int tem = nums[k];
+        nums[k] = nums[n];
+        nums[n] = tem;
+    }
+}

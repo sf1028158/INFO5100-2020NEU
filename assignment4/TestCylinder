@@ -1,0 +1,34 @@
+public class TestCylinder {
+   public static void main(String[] args) {
+      //Constructed a Circle with Circle()
+      //Run of the program should produce the following output:
+      //Radius is 2.0, Color is yellow, Base area is (your answer) 
+   
+      Circle a = new Circle();
+      a.setRadius(2.0);
+      a.setColor("yellow");
+      System.out.println("Radius is "+a.getRadius()+", Color is"+a.getColor+", Base area is "+a.getArea());
+
+      
+      //Constructed a Cylinder with Cylinder()
+      //Run of the program should produce the following output:
+      //Radius is 1.0, Height is 1.0, Color is red, Base area is (your answer), Volume is (your answer)
+
+       Cylinder b=new Cylinder();
+       b.setRadius(1.0);
+       b.setHeight(1.0);
+       b.setColor("Red");
+       System.out.println("Radius is"+b.getRadius+", Color is"+b.getColor+", Base area is"+b.getVolum());
+     
+
+
+      //Constructed a Cylinder with Cylinder(height, radius)
+      //Run of the program should produce the following output:
+      //Radius is 2.0, Height is 5.0, Color is red, Base area is (your answer), Volume is (your answer)
+
+      Cylinder c= new Cylinder(5.0,2.0);
+      c.setColor("red");
+      System.out.println("Radius is"+c.getRadius+", Color is"+c.getColor+", Base area is"+c.getVolum());
+      
+   }
+}

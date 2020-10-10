@@ -1,0 +1,52 @@
+class Student(){
+string name;
+int id;
+public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name =name;
+	}
+}
+
+
+
+
+class Course(){
+string name;
+int numberOfStudents=0;
+Student[] registeredStudents = new Student[10];
+}
+
+public Student getStudent(){
+  if (numberOfStudents != 0){
+  for (int i = 0; i < numberOfStudents; i++) {
+       System.out.print(registeredStudents[i].name + " ");
+            }
+return registeredStudents;
+
+}
+
+public boolean isFull(){
+if (numberOfStudents == 10){
+				return true;  
+			} 
+  else{
+	   return false; 
+                      }
+}
+
+public void registerStudent(Student student){
+    Course course;
+    if(course.isFull()){
+     System.out.println(student.name+ " can't register the course"+cours.name);
+     }
+        else{
+        registeredStudents[numberOfStudents]=student;
+        numberOfStudents++;
+
+}
+
+
+}
