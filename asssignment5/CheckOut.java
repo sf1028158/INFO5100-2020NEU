@@ -69,13 +69,12 @@ public class CheckOut {
     	
     	}
     	 
-    	double tax=totalcost*shop.getTaxRate();
-    	
-    	ss=ss+"Tax"+"        ."+tax+"\n"+"Total Cost          "+tax;
+    	 int tax=totalTax();
+    	double totalCost1=(double)totalCost()/100;
+    	ss=ss+"Tax"+"        ."+tax+"\n";
+    	ss+="Total Cost          "+totalCost1;
     	
     	return ss;
-    	   
-    	   
     	   
     	   
     	   
