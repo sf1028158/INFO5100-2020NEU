@@ -71,7 +71,7 @@ public class CheckOut {
     	 
     	double tax=totalcost*shop.getTaxRate();
     	
-    	ss=ss+"Tax"+"        ."+tax+"/n"+"Total Cost          "+tax;
+    	ss=ss+"Tax"+"        ."+tax+"\n"+"Total Cost          "+tax;
     	
     	return ss;
     	   
